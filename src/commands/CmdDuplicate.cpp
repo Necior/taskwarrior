@@ -85,7 +85,7 @@ int CmdDuplicate::execute (std::string&)
       dup.remove ("recur");
       dup.remove ("until");
       dup.remove ("imask");
-      std::cout << format ("Note: task {1} was a recurring task.  The duplicated task is not.", task.identifier ())
+      std::cout << ::format ("Note: task {1} was a recurring task.  The duplicated task is not.", task.identifier ())
           << '\n';
     }
 
@@ -93,7 +93,7 @@ int CmdDuplicate::execute (std::string&)
     else if (dup.getStatus () == Task::recurring)
     {
       dup.remove ("mask");
-      std::cout << format ("Note: task {1} was a parent recurring task.  The duplicated task is too.", task.identifier ())
+      std::cout << ::format ("Note: task {1} was a parent recurring task.  The duplicated task is too.", task.identifier ())
           << '\n';
     }
 
@@ -102,7 +102,7 @@ int CmdDuplicate::execute (std::string&)
 
     dup.modify (Task::modAnnotate);
 
-    if (permission (format ("Duplicate task {1} '{2}'?",
+    if (permission (::format ("Duplicate task {1} '{2}'?",
                             task.identifier (true),
                             task.get ("description")),
                     filtered.size ()))
@@ -115,11 +115,11 @@ int CmdDuplicate::execute (std::string&)
       if (Context::getContext ().verbose ("new-id") &&
           (status == Task::pending ||
            status == Task::waiting))
-        std::cout << format ("Created task {1}.\n", dup.id);
+        std::cout << ::format ("Created task {1}.\n", dup.id);
 
       else if (Context::getContext ().verbose ("new-uuid") &&
                status != Task::recurring)
-        std::cout << format ("Created task {1}.\n", dup.get ("uuid"));
+        std::cout << ::format ("Created task {1}.\n", dup.get ("uuid"));
 
       if (Context::getContext ().verbose ("project"))
         projectChanges[task.get ("project")] = onProjectChange (task);

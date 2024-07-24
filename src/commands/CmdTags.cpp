@@ -118,12 +118,12 @@ int CmdTags::execute (std::string& output)
     if (unique.size () == 1)
       Context::getContext ().footnote ("1 tag");
     else
-      Context::getContext ().footnote (format ("{1} tags", unique.size ()));
+      Context::getContext ().footnote (::format ("{1} tags", unique.size ()));
 
     if (quantity == 1)
       Context::getContext ().footnote ("(1 task)");
     else
-      Context::getContext ().footnote (format ("({1} tasks)", quantity));
+      Context::getContext ().footnote (::format ("({1} tasks)", quantity));
 
     out << '\n';
   }

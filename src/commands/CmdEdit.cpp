@@ -93,7 +93,7 @@ int CmdEdit::execute (std::string&)
   // If we are editing more than "bulk" tasks, ask for confirmation.
   // Bulk = 0 denotes infinite bulk.
   if ((filtered.size () > bulk) && (bulk != 0))
-    if (! confirm (format ("Do you wish to manually edit {1} tasks?", filtered.size ())))
+    if (! confirm (::format ("Do you wish to manually edit {1} tasks?", filtered.size ())))
       return 2;
 
   // Find number of matching tasks.
@@ -693,7 +693,7 @@ void CmdEdit::parseTask (Task& task, const std::string& after, const std::string
       {
         if (value != "")
         {
-          Context::getContext ().footnote (format ("UDA {1} modified.", col.first));
+          Context::getContext ().footnote (::format ("UDA {1} modified.", col.first));
 
           if (type == "string")
           {
@@ -707,7 +707,7 @@ void CmdEdit::parseTask (Task& task, const std::string& after, const std::string
                 pig.eos ())
               task.set (col.first, value);
             else
-              throw format ("The value '{1}' is not a valid numeric value.", value);
+              throw ::format ("The value '{1}' is not a valid numeric value.", value);
           }
           else if (type == "date")
           {
@@ -720,7 +720,7 @@ void CmdEdit::parseTask (Task& task, const std::string& after, const std::string
         }
         else
         {
-          Context::getContext ().footnote (format ("UDA {1} deleted.", col.first));
+          Context::getContext ().footnote (::format ("UDA {1} deleted.", col.first));
           task.remove (col.first);
         }
       }
@@ -794,14 +794,14 @@ ARE_THESE_REALLY_HARMFUL:
   bool changes = false; // No changes made.
 
   // Launch the editor.
-  std::cout << format ("Launching '{1}' now...\n", editor);
+  std::cout << ::format ("Launching '{1}' now...\n", editor);
   int exitcode = system (editor.c_str ());
   auto captured_errno = errno;
   if (0 == exitcode)
     std::cout << "Editing complete.\n";
   else
   {
-    std::cout << format ("Editing failed with exit code {1}.\n", exitcode);
+    std::cout << ::format ("Editing failed with exit code {1}.\n", exitcode);
     if (-1 == exitcode)
       std::cout << std::strerror (captured_errno) << '\n';
     File::remove (file.str ());

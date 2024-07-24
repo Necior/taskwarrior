@@ -232,7 +232,7 @@ std::string CmdHelp::composeUsage () const
     {
       row = view.addRow ();
       view.set (row, 1, alias.first.substr (6));
-      view.set (row, 2, format ("Aliased to '{1}'", alias.second));
+      view.set (row, 2, ::format ("Aliased to '{1}'", alias.second));
     }
   }
 

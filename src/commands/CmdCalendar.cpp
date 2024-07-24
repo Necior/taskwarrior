@@ -138,7 +138,7 @@ int CmdCalendar::execute (std::string& output)
     {
       argMonth = strtol (arg.c_str (), nullptr, 10);
       if (argMonth < 1 || argMonth > 12)
-        throw format ("Argument '{1}' is not a valid month.", arg);
+        throw ::format ("Argument '{1}' is not a valid month.", arg);
     }
 
     // "January" etc.
@@ -146,11 +146,11 @@ int CmdCalendar::execute (std::string& output)
     {
       argMonth = Datetime::monthOfYear (matches[0]);
       if (argMonth == -1)
-        throw format ("Argument '{1}' is not a valid month.", arg);
+        throw ::format ("Argument '{1}' is not a valid month.", arg);
     }
 
     else
-      throw format ("Could not recognize argument '{1}'.", arg);
+      throw ::format ("Could not recognize argument '{1}'.", arg);
   }
 
   // Supported combinations:
@@ -557,7 +557,7 @@ std::string CmdCalendar::renderMonths (
         view.set (row,
                   (8 * mpl),
                   // Make sure the week number is always 4 columns, space-padded.
-                  format ((woy < 10 ? "   {1}" : "  {1}"), woy),
+                  ::format ((woy < 10 ? "   {1}" : "  {1}"), woy),
                   color_weeknumber);
 
       // Calculate column id.

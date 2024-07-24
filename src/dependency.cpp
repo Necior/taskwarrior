@@ -128,7 +128,7 @@ void dependencyChainOnComplete (Task& task)
     // Nag about broken chain.
     if (Context::getContext ().config.getBoolean ("dependency.reminder"))
     {
-      std::cout << format (STRING_DEPEND_BLOCKED, task.identifier ())
+      std::cout << ::format (STRING_DEPEND_BLOCKED, task.identifier ())
                 << '\n';
 
       for (const auto& b : blocking)
@@ -181,7 +181,7 @@ void dependencyChainOnStart (Task& task)
     // broken chain.
     if (blocking.size ())
     {
-      std::cout << format (STRING_DEPEND_BLOCKED, task.identifier ())
+      std::cout << ::format (STRING_DEPEND_BLOCKED, task.identifier ())
                 << '\n';
 
       for (const auto& b : blocking)

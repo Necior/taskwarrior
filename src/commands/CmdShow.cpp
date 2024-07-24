@@ -336,7 +336,7 @@ int CmdShow::execute (std::string& output)
 
     if (Context::getContext ().color () && warning.nontrivial ())
       out << "  "
-          << format (STRING_CMD_SHOW_DIFFER_COLOR, warning.colorize ("color"))
+          << ::format (STRING_CMD_SHOW_DIFFER_COLOR, warning.colorize ("color"))
           << "\n\n";
   }
 
@@ -349,7 +349,7 @@ int CmdShow::execute (std::string& output)
       out << "  " << i << '\n';
 
     if (Context::getContext ().color () && error.nontrivial ())
-      out << '\n' << format (STRING_CMD_SHOW_DIFFER_COLOR, error.colorize ("color"));
+      out << '\n' << ::format (STRING_CMD_SHOW_DIFFER_COLOR, error.colorize ("color"));
 
     out << "\n\n";
   }
@@ -365,7 +365,7 @@ int CmdShow::execute (std::string& output)
   if (calendardetails != "full"   &&
       calendardetails != "sparse" &&
       calendardetails != "none")
-    out << format (STRING_CMD_SHOW_CONFIG_ERROR, "calendar.details", calendardetails)
+    out << ::format (STRING_CMD_SHOW_CONFIG_ERROR, "calendar.details", calendardetails)
         << '\n';
 
   // Check for bad values in rc.calendar.holidays.
@@ -373,7 +373,7 @@ int CmdShow::execute (std::string& output)
   if (calendarholidays != "full"   &&
       calendarholidays != "sparse" &&
       calendarholidays != "none")
-    out << format (STRING_CMD_SHOW_CONFIG_ERROR, "calendar.holidays", calendarholidays)
+    out << ::format (STRING_CMD_SHOW_CONFIG_ERROR, "calendar.holidays", calendarholidays)
         << '\n';
 
   // Verify installation.  This is mentioned in the documentation as the way

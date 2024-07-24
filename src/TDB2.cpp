@@ -294,7 +294,7 @@ void TDB2::show_diff (
     Table view = before.diffForUndoSide(after);
 
     std::cout << '\n'
-              << format ("The last modification was made {1}", lastChange.toString ())
+              << ::format ("The last modification was made {1}", lastChange.toString ())
               << '\n'
               << '\n'
               << view.render ()

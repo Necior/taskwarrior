@@ -55,7 +55,7 @@ void legacyColumnMap (std::string& name)
   auto found = legacyMap.find (name);
   if (found != legacyMap.end ())
   {
-    Context::getContext ().footnote (format (STRING_LEGACY_PRIORITY, name, found->second));
+    Context::getContext ().footnote (::format (STRING_LEGACY_PRIORITY, name, found->second));
     name = found->second;
   }
 }
@@ -83,7 +83,7 @@ void legacySortColumnMap (std::string& name)
   auto found = legacyMap.find (name);
   if (found != legacyMap.end ())
   {
-    Context::getContext ().footnote (format (STRING_LEGACY_PRIORITY, name, found->second));
+    Context::getContext ().footnote (::format (STRING_LEGACY_PRIORITY, name, found->second));
     name = found->second;
   }
 }

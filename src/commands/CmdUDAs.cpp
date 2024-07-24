@@ -120,8 +120,8 @@ int CmdUDAs::execute (std::string& output)
         << table.render ()
         << optionalBlankLine ()
         << (udas.size () == 1
-              ? format ("{1} UDA defined", udas.size ())
-              : format ("{1} UDAs defined", udas.size ()))
+              ? ::format ("{1} UDA defined", udas.size ())
+              : ::format ("{1} UDAs defined", udas.size ()))
         << '\n';
   }
   else
@@ -158,8 +158,8 @@ int CmdUDAs::execute (std::string& output)
         << orphanTable.render ()
         << optionalBlankLine ()
         << (udas.size () == 1
-              ? format ("{1} Orphan UDA", orphans.size ())
-              : format ("{1} Orphan UDAs", orphans.size ()))
+              ? ::format ("{1} Orphan UDA", orphans.size ())
+              : ::format ("{1} Orphan UDAs", orphans.size ()))
         << '\n';
   }
 

@@ -185,7 +185,7 @@ void ColumnDepends::modify (Task& task, const std::string& value)
            else
              task.addDependency (loaded_task.get ("uuid"));
          else
-           throw format ("Dependency could not be set - task with UUID '{1}' does not exist.", dep);
+           throw ::format ("Dependency could not be set - task with UUID '{1}' does not exist.", dep);
        }
     }
     // ID range
@@ -206,7 +206,7 @@ void ColumnDepends::modify (Task& task, const std::string& value)
       else
         task.addDependency (lower);
     else
-      throw format ("Invalid dependency value: '{1}'", dep);
+      throw ::format ("Invalid dependency value: '{1}'", dep);
   }
 }
 

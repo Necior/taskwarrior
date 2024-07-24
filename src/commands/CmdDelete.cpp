@@ -83,7 +83,7 @@ int CmdDelete::execute (std::string&)
     {
       // Delete the specified task.
       std::string question;
-      question = format ("Delete task {1} '{2}'?",
+      question = ::format ("Delete task {1} '{2}'?",
                          task.identifier (true),
                          task.get ("description"));
 
@@ -171,7 +171,7 @@ int CmdDelete::execute (std::string&)
     }
     else
     {
-      std::cout << format ("Task {1} '{2}' is not deletable.",
+      std::cout << ::format ("Task {1} '{2}' is not deletable.",
                            task.identifier (true),
                            task.get ("description"))
           << '\n';

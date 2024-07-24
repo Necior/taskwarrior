@@ -78,7 +78,7 @@ int CmdAppend::execute (std::string&)
     Task before (task);
 
     // Append to the specified task.
-    auto question = format ("Append to task {1} '{2}'?",
+    auto question = ::format ("Append to task {1} '{2}'?",
                             task.identifier (true),
                             task.get ("description"));
 

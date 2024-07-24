@@ -71,7 +71,7 @@ int CmdExport::execute (std::string& output)
     }
 
     if (selectedReport.empty ()) {
-        throw format("Unable to find report that matches '{1}'.", words[0]);
+        throw ::format("Unable to find report that matches '{1}'.", words[0]);
     }
   }
 

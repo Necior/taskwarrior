@@ -77,7 +77,7 @@ int CmdGet::execute (std::string& output)
     case Lexer::Type::identifier:
       if (! arg.hasTag ("BINARY") &&
           ! arg.hasTag ("CMD"))
-        throw format ("'{1}' is not a DOM reference.", arg.attribute ("raw"));
+        throw ::format ("'{1}' is not a DOM reference.", arg.attribute ("raw"));
 
     default:
       break;

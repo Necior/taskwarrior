@@ -78,7 +78,7 @@ int CmdPrepend::execute (std::string&)
     Task before (task);
 
     // Prepend to the specified task.
-    std::string question = format ("Prepend to task {1} '{2}'?",
+    std::string question = ::format ("Prepend to task {1} '{2}'?",
                                    task.identifier (true),
                                    task.get ("description"));
 

@@ -82,7 +82,7 @@ int CmdUnique::execute (std::string& output)
              task.getStatus () != Task::deleted &&
              task.getStatus () != Task::completed)
     {
-      values.insert (format (task.id));
+      values.insert (::format (task.id));
     }
   }
 

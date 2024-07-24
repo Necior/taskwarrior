@@ -102,7 +102,7 @@ int CmdSync::execute (std::string& output)
   }
 
   if (Context::getContext ().verbose ("sync")) {
-    out << format ("Syncing with {1}", server_ident)
+    out << ::format ("Syncing with {1}", server_ident)
         << '\n';
   }
 

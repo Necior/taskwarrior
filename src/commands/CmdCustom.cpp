@@ -94,7 +94,7 @@ int CmdCustom::execute (std::string& output)
   auto labels = split (reportLabels, ',');
 
   if (columns.size () != labels.size () && labels.size () != 0)
-    throw format ("There are different numbers of columns and labels for report '{1}'.", _keyword);
+    throw ::format ("There are different numbers of columns and labels for report '{1}'.", _keyword);
 
   auto sortOrder = split (reportSort, ',');
   if (sortOrder.size () != 0 &&
@@ -233,14 +233,14 @@ int CmdCustom::execute (std::string& output)
     {
       out << (filtered.size () == 1
                 ?  "1 task"
-                : format ("{1} tasks", filtered.size ()));
+                : ::format ("{1} tasks", filtered.size ()));
 
       if (maxrows && maxrows < (int)filtered.size ())
-        out << ", " << format ("{1} shown", maxrows);
+        out << ", " << ::format ("{1} shown", maxrows);
 
       if (maxlines && maxlines < (int)filtered.size ())
         out << ", "
-            << format ("truncated to {1} lines", maxlines - table_header);
+            << ::format ("truncated to {1} lines", maxlines - table_header);
 
       out << '\n';
     }
@@ -278,7 +278,7 @@ int CmdCustom::execute (std::string& output)
   if (pending_data.exists()) {
     Color warning = Color (Context::getContext ().config.get ("color.warning"));
     std::cerr << warning.colorize (
-      format ("Found existing '*.data' files in {1}", location)) << "\n";
+      ::format ("Found existing '*.data' files in {1}", location)) << "\n";
     std::cerr << "  Taskwarrior's storage format changed in 3.0, requiring a manual migration.\n";
     std::cerr << "  See https://github.com/GothenburgBitFactory/taskwarrior/releases.\n";
   }

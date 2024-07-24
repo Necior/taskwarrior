@@ -80,7 +80,7 @@ int CmdStart::execute (std::string&)
       Task before (task);
 
       // Start the specified task.
-      std::string question = format ("Start task {1} '{2}'?",
+      std::string question = ::format ("Start task {1} '{2}'?",
                                      task.identifier (true),
                                      task.get ("description"));
       task.setAsNow ("start");
@@ -119,7 +119,7 @@ int CmdStart::execute (std::string&)
     }
     else
     {
-      std::cout << format ("Task {1} '{2}' already started.",
+      std::cout << ::format ("Task {1} '{2}' already started.",
                            task.id,
                            task.get ("description"))
                 << '\n';

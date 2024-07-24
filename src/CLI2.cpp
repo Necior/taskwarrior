@@ -283,7 +283,7 @@ void CLI2::applyOverrides (int argc, const char** argv)
   auto display_overrides = [&] (std::string raw)
   {
     if (is_override (raw))
-      context.footnote (format ("Configuration override {1}", raw));
+      context.footnote (::format ("Configuration override {1}", raw));
   };
   std::for_each (argv, last, override_settings);
   if (context.verbose ("override"))
@@ -638,7 +638,7 @@ void CLI2::addContext (bool readable, bool writeable)
           a._lextype == Lexer::Type::number ||
           a._lextype == Lexer::Type::set)
       {
-        Context::getContext ().debug (format ("UUID/ID argument found '{1}', not applying context.", a.attribute ("raw")));
+        Context::getContext ().debug (::format ("UUID/ID argument found '{1}', not applying context.", a.attribute ("raw")));
         return;
       }
     }
@@ -653,7 +653,7 @@ void CLI2::addContext (bool readable, bool writeable)
 
   // Inform the user about the application of context
   if (Context::getContext ().verbose ("context"))
-    Context::getContext ().footnote (format (
+    Context::getContext ().footnote (::format (
         "Context '{1}' set. Use 'task context none' to remove.",
         Context::getContext ().config.get ("context")
     ));
@@ -931,7 +931,7 @@ void CLI2::aliasExpansion ()
   while (action && counter++ < safetyValveDefault);
 
   if (counter >= safetyValveDefault)
-    Context::getContext ().debug (format ("Nested alias limit of {1} reached.", safetyValveDefault));
+    Context::getContext ().debug (::format ("Nested alias limit of {1} reached.", safetyValveDefault));
 
   if (changes &&
       Context::getContext ().config.getInteger ("debug.parser") >= 2)
@@ -1037,7 +1037,7 @@ void CLI2::categorizeArgs ()
              ! cmd->accepts_miscellaneous ())
     {
       // No commands were expected --> error.
-      throw format ("The '{1}' command does not allow '{2}'.", command, a.attribute ("raw"));
+      throw ::format ("The '{1}' command does not allow '{2}'.", command, a.attribute ("raw"));
     }
     else if (cmd                             &&
              ! cmd->accepts_filter ()        &&
@@ -1466,7 +1466,7 @@ void CLI2::desugarFilterAttributes ()
 #endif
         }
         else
-          throw format ("Error: unrecognized attribute modifier '{1}'.", mod);
+          throw ::format ("Error: unrecognized attribute modifier '{1}'.", mod);
 
         reconstructed.push_back (lhs);
         reconstructed.push_back (op);

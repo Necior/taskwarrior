@@ -419,7 +419,7 @@ void Hooks::assertValidJSON (
         i[0] != '{'     ||
         i[i.length () - 1] != '}')
     {
-      Context::getContext ().error (format (STRING_HOOK_ERROR_OBJECT, Path (script).name ()));
+      Context::getContext ().error (::format (STRING_HOOK_ERROR_OBJECT, Path (script).name ()));
       throw 0;
     }
 
@@ -428,19 +428,19 @@ void Hooks::assertValidJSON (
       json::value* root = json::parse (i);
       if (root->type () != json::j_object)
       {
-        Context::getContext ().error (format (STRING_HOOK_ERROR_OBJECT, Path (script).name ()));
+        Context::getContext ().error (::format (STRING_HOOK_ERROR_OBJECT, Path (script).name ()));
         throw 0;
       }
 
       if (((json::object*)root)->_data.find ("description") == ((json::object*)root)->_data.end ())
       {
-        Context::getContext ().error (format (STRING_HOOK_ERROR_NODESC, Path (script).name ()));
+        Context::getContext ().error (::format (STRING_HOOK_ERROR_NODESC, Path (script).name ()));
         throw 0;
       }
 
       if (((json::object*)root)->_data.find ("uuid") == ((json::object*)root)->_data.end ())
       {
-        Context::getContext ().error (format (STRING_HOOK_ERROR_NOUUID, Path (script).name ()));
+        Context::getContext ().error (::format (STRING_HOOK_ERROR_NOUUID, Path (script).name ()));
         throw 0;
       }
 
@@ -449,7 +449,7 @@ void Hooks::assertValidJSON (
 
     catch (const std::string& e)
     {
-      Context::getContext ().error (format (STRING_HOOK_ERROR_SYNTAX, i));
+      Context::getContext ().error (::format (STRING_HOOK_ERROR_SYNTAX, i));
       if (_debug)
         Context::getContext ().error (STRING_HOOK_ERROR_JSON + e);
       throw 0;
@@ -471,7 +471,7 @@ void Hooks::assertNTasks (
 {
   if (input.size () != n)
   {
-    Context::getContext ().error (format (STRING_HOOK_ERROR_BAD_NUM, n, (int) input.size (), Path (script).name ()));
+    Context::getContext ().error (::format (STRING_HOOK_ERROR_BAD_NUM, n, (int) input.size (), Path (script).name ()));
     throw 0;
   }
 }
@@ -493,7 +493,7 @@ void Hooks::assertSameTask (
     if (u == root_obj->_data.end ()          ||
         u->second->type () != json::j_string)
     {
-      Context::getContext ().error (format (STRING_HOOK_ERROR_SAME1, uuid, Path (script).name ()));
+      Context::getContext ().error (::format (STRING_HOOK_ERROR_SAME1, uuid, Path (script).name ()));
       throw 0;
     }
 
@@ -503,7 +503,7 @@ void Hooks::assertSameTask (
     std::string json_uuid = json::decode (text);
     if (json_uuid != uuid)
     {
-      Context::getContext ().error (format (STRING_HOOK_ERROR_SAME2, uuid, json_uuid, Path (script).name ()));
+      Context::getContext ().error (::format (STRING_HOOK_ERROR_SAME2, uuid, json_uuid, Path (script).name ()));
       throw 0;
     }
 
@@ -523,7 +523,7 @@ void Hooks::assertFeedback (
 
   if (! foundSomething)
   {
-    Context::getContext ().error (format (STRING_HOOK_ERROR_NOFEEDBACK, Path (script).name ()));
+    Context::getContext ().error (::format (STRING_HOOK_ERROR_NOFEEDBACK, Path (script).name ()));
     throw 0;
   }
 }
@@ -591,7 +591,7 @@ int Hooks::callHookScript (
   {
     Timer timer;
     status = execute (script, args, inputStr, outputStr);
-    Context::getContext ().debugTiming (format ("Hooks::execute ({1})", script), timer);
+    Context::getContext ().debugTiming (::format ("Hooks::execute ({1})", script), timer);
   }
   else
     status = execute (script, args, inputStr, outputStr);
@@ -605,7 +605,7 @@ int Hooks::callHookScript (
       if (i != "")
         Context::getContext ().debug ("  " + i);
 
-    Context::getContext ().debug (format ("Hook: Completed with status {1}", status));
+    Context::getContext ().debug (::format ("Hook: Completed with status {1}", status));
     Context::getContext ().debug (" "); // Blank line
   }
 

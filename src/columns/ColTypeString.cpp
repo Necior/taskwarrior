@@ -75,7 +75,7 @@ void ColumnTypeString::modify (Task& task, const std::string& value)
       Context::getContext ().debug (label + _name + " <-- '" + strValue + "' <-- '" + value + '\'');
     }
     else
-      throw format (STRING_INVALID_MOD, _name, value);
+      throw ::format (STRING_INVALID_MOD, _name, value);
   }
   else
   {
@@ -85,7 +85,7 @@ void ColumnTypeString::modify (Task& task, const std::string& value)
       Context::getContext ().debug (label + _name + " <-- '" + value + '\'');
     }
     else
-      throw format (STRING_INVALID_MOD, _name, value);
+      throw ::format (STRING_INVALID_MOD, _name, value);
   }
 }
 

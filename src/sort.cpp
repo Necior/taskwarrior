@@ -319,7 +319,7 @@ static bool sort_compare (int left, int right)
       }
     }
     else
-      throw format ("The '{1}' column is not a valid sort field.", field);
+      throw ::format ("The '{1}' column is not a valid sort field.", field);
   }
 
   return false;

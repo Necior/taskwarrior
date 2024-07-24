@@ -76,7 +76,7 @@ bool CmdConfig::setConfigVariable (
     {
       found = true;
       if (!confirmation ||
-          confirm (format ("Are you sure you want to change the value of '{1}' from '{2}' to '{3}'?", name, Context::getContext ().config.get (name), value)))
+          confirm (::format ("Are you sure you want to change the value of '{1}' from '{2}' to '{3}'?", name, Context::getContext ().config.get (name), value)))
       {
         auto new_line = line.substr (0, pos + name.length () + 1) + json::encode (value);
 
@@ -94,7 +94,7 @@ bool CmdConfig::setConfigVariable (
   // Not found, so append instead.
   if (! found &&
       (! confirmation ||
-       confirm (format ("Are you sure you want to add '{1}' with a value of '{2}'?", name, value))))
+       confirm (::format ("Are you sure you want to add '{1}' with a value of '{2}'?", name, value))))
   {
     contents.push_back (name + '=' + json::encode (value));
     change = true;
@@ -132,7 +132,7 @@ int CmdConfig::unsetConfigVariable (const std::string& name, bool confirmation /
 
       // Remove name
       if (!confirmation ||
-          confirm (format ("Are you sure you want to remove '{1}'?", name)))
+          confirm (::format ("Are you sure you want to remove '{1}'?", name)))
       {
         // vector::erase method returns a valid iterator to the next object
         line = contents.erase (line);
@@ -211,13 +211,13 @@ int CmdConfig::execute (std::string& output)
           found = true;
 
         if (! found)
-          throw format ("No entry named '{1}' found.", name);
+          throw ::format ("No entry named '{1}' found.", name);
       }
 
       // Show feedback depending on whether .taskrc has been rewritten
       if (change)
       {
-        out << format ("Config file {1} modified.", Context::getContext ().config.file ())
+        out << ::format ("Config file {1} modified.", Context::getContext ().config.file ())
             << '\n';
       }
       else

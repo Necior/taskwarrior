@@ -84,7 +84,7 @@ int CmdModify::execute (std::string&)
       // Abort if change introduces inconsistencies.
       checkConsistency(before, task);
 
-      auto question = format ("Modify task {1} '{2}'?",
+      auto question = ::format ("Modify task {1} '{2}'?",
                               task.identifier (true),
                               task.get ("description"));
 

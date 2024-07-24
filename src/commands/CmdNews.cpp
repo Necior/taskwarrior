@@ -135,7 +135,7 @@ void NewsItem::render () {
 
   // TODO: For some reason, bold cannot be blended in 256-color terminals
   // Apply this workaround of colorizing twice.
-  std::cout << bold.colorize (header.colorize (format ("{1} ({2})\n", _title, _version)));
+  std::cout << bold.colorize (header.colorize (::format ("{1} ({2})\n", _title, _version)));
   if (_background.size ()) {
     if (_bg_title.empty ())
       _bg_title = "Background";
@@ -146,12 +146,12 @@ void NewsItem::render () {
 
   wait_for_enter ();
 
-  std::cout << "  " << underline.colorize (format ("What changed in {1}?\n", _version));
+  std::cout << "  " << underline.colorize (::format ("What changed in {1}?\n", _version));
   if (_punchline.size ())
-    std::cout << footnote.colorize (format ("{1}\n", _punchline));
+    std::cout << footnote.colorize (::format ("{1}\n", _punchline));
 
   if (_update.size ())
-    std::cout << format ("{1}\n", _update);
+    std::cout << ::format ("{1}\n", _update);
 
   wait_for_enter ();
 
@@ -213,7 +213,7 @@ void NewsItem::version2_6_0 (std::vector<NewsItem>& items) {
 
     if (old_style.size ())
     {
-      advice << format (
+      advice << ::format (
         "  You have {1} defined contexts, out of which {2} are old-style:\n",
         defined.size (),
         std::count_if (
@@ -225,7 +225,7 @@ void NewsItem::version2_6_0 (std::vector<NewsItem>& items) {
       for (auto context: defined) {
         std::string old_definition = config.get ("context." + context);
         if (old_definition != "")
-          advice << format ("  * {1}: {2}\n", context, old_definition);
+          advice << ::format ("  * {1}: {2}\n", context, old_definition);
       }
 
       advice << "\n"
@@ -235,7 +235,7 @@ void NewsItem::version2_6_0 (std::vector<NewsItem>& items) {
       for (auto context: defined) {
         std::string old_definition = config.get ("context." + context);
         if (old_definition != "")
-          advice << format ("  $ task context define {1} '{2}'\n", context, old_definition);
+          advice << ::format ("  $ task context define {1} '{2}'\n", context, old_definition);
       }
 
       advice << "\n"
@@ -590,7 +590,7 @@ int CmdNews::execute (std::string& output)
     std::cout << bold.colorize ("You are up to date!\n");
   } else {
     // Print release notes
-    std::cout << bold.colorize (format (
+    std::cout << bold.colorize (::format (
       "\n"
       "================================================\n"
       "Taskwarrior {1} through {2} Release Highlights\n"
@@ -599,7 +599,7 @@ int CmdNews::execute (std::string& output)
       current_version));
 
     for (unsigned short i=0; i < items.size (); i++) {
-      std::cout << format ("\n({1}/{2}) ", i+1, items.size ());
+      std::cout << ::format ("\n({1}/{2}) ", i+1, items.size ());
       items[i].render ();
     }
     std::cout << "Thank you for catching up on the new features!\n";
@@ -615,7 +615,7 @@ int CmdNews::execute (std::string& output)
 
   std::stringstream outro;
   outro << underline.colorize (bold.colorize ("Taskwarrior crowdfunding\n"));
-  outro << format (
+  outro << ::format (
     "Taskwarrior has been in development for {1} years but its survival\n"
     "depends on your support!\n\n"
     "Please consider joining our {2} fundraiser to help us fund maintenance\n"
@@ -637,7 +637,7 @@ int CmdNews::execute (std::string& output)
     // Revert back to default signal handling after displaying the outro
     signal (SIGINT, SIG_DFL);
 
-    std::string question = format (
+    std::string question = ::format (
       "\nWould you like to open Taskwarrior {1} fundraising campaign to read more?",
       now.year ()
     );

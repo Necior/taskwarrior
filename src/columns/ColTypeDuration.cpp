@@ -71,7 +71,7 @@ void ColumnTypeDuration::modify (Task& task, const std::string& value)
     task.set (_name, evaluatedValue);
   }
   else
-    throw format ("The duration value '{1}' is not supported.", value);
+    throw ::format ("The duration value '{1}' is not supported.", value);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -68,9 +68,9 @@ int CmdUrgency::execute (std::string& output)
   std::stringstream out;
   for (auto& task : filtered)
   {
-    out << format ("task {1} urgency {2}",
+    out << ::format ("task {1} urgency {2}",
                    task.identifier (),
-                   Lexer::trim (format (task.urgency (), 6, 3)))
+                   Lexer::trim (::format (task.urgency (), 6, 3)))
         << '\n';
   }
 

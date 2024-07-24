@@ -77,7 +77,7 @@ int CmdStop::execute (std::string&)
       Task before (task);
 
       // Stop the specified task.
-      std::string question = format ("Stop task {1} '{2}'?",
+      std::string question = ::format ("Stop task {1} '{2}'?",
                                      task.identifier (true),
                                      task.get ("description"));
 
@@ -107,7 +107,7 @@ int CmdStop::execute (std::string&)
     }
     else
     {
-      std::cout << format ("Task {1} '{2}' not started.",
+      std::cout << ::format ("Task {1} '{2}' not started.",
                            task.identifier (true),
                            task.get ("description"))
                 << '\n';

@@ -107,7 +107,7 @@ int CmdInfo::execute (std::string& output)
     // id
     auto row = view.addRow ();
     view.set (row, 0, "ID");
-    view.set (row, 1, (task.id ? format (task.id) : "-"));
+    view.set (row, 1, (task.id ? ::format (task.id) : "-"));
 
     std::string status = Lexer::ucFirst (Task::statusToText (task.getStatus ()));
 
@@ -369,7 +369,7 @@ int CmdInfo::execute (std::string& output)
     // Task::urgency
     row = view.addRow ();
     view.set (row, 0, "Urgency");
-    view.set (row, 1, Lexer::trimLeft (format (task.urgency (), 4, 4)));
+    view.set (row, 1, Lexer::trimLeft (::format (task.urgency (), 4, 4)));
 
     // Show any UDAs
     auto all = task.all ();
@@ -522,7 +522,7 @@ int CmdInfo::execute (std::string& output)
       row = urgencyDetails.addRow ();
       urgencyDetails.set (row, 5, rightJustify ("------", 6));
       row = urgencyDetails.addRow ();
-      urgencyDetails.set (row, 5, rightJustify (format (task.urgency (), 4, 4), 6));
+      urgencyDetails.set (row, 5, rightJustify (::format (task.urgency (), 4, 4), 6));
     }
 
     out << optionalBlankLine ()
@@ -550,11 +550,11 @@ void CmdInfo::urgencyTerm (
   {
     auto row = view.addRow ();
     view.set (row, 0, "    " + label);
-    view.set (row, 1, rightJustify (format (measure, 5, 3), 6));
+    view.set (row, 1, rightJustify (::format (measure, 5, 3), 6));
     view.set (row, 2, "*");
-    view.set (row, 3, rightJustify (format (coefficient, 4, 2), 4));
+    view.set (row, 3, rightJustify (::format (coefficient, 4, 2), 4));
     view.set (row, 4, "=");
-    view.set (row, 5, rightJustify (format (value, 5, 3), 6));
+    view.set (row, 5, rightJustify (::format (value, 5, 3), 6));
   }
 }
 

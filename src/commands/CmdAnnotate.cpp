@@ -78,7 +78,7 @@ int CmdAnnotate::execute (std::string&)
     Task before (task);
 
     // Annotate the specified task.
-    std::string question = format ("Annotate task {1} '{2}'?",
+    std::string question = ::format ("Annotate task {1} '{2}'?",
                                    task.identifier (true),
                                    task.get ("description"));
 

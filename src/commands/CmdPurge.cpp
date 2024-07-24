@@ -99,7 +99,7 @@ void CmdPurge::handleChildren (Task& task, std::vector<Task>& tasks)
     {
       if (child.getStatus () != Task::deleted)
         // In case any child task is not deleted, bail out
-        throw format ("Task '{1}' is a recurrence template. Its child task {2} must be deleted before it can be purged.",
+        throw ::format ("Task '{1}' is a recurrence template. Its child task {2} must be deleted before it can be purged.",
                       task.get ("description"),
                       child.identifier (true));
       else
@@ -112,7 +112,7 @@ void CmdPurge::handleChildren (Task& task, std::vector<Task>& tasks)
     return;
 
   // Ask for confirmation to purge them, if needed
-  std::string question = format ("Task '{1}' is a recurrence template. All its {2} deleted children tasks will be purged as well. Continue?",
+  std::string question = ::format ("Task '{1}' is a recurrence template. All its {2} deleted children tasks will be purged as well. Continue?",
                                  task.get ("description"),
                                  children.size ());
 
@@ -159,7 +159,7 @@ int CmdPurge::execute (std::string&)
       matched_deleted = true;
 
       std::string question;
-      question = format ("Permanently remove task {1} '{2}'?",
+      question = ::format ("Permanently remove task {1} '{2}'?",
                          task.identifier (true),
                          task.get ("description"));
 
